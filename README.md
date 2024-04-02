@@ -1,1 +1,1 @@
-A simple hello world express server. 
+/ Server de artigos para um site de advocacia.
