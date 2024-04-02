@@ -1,5 +1,4 @@
 
-//node_modules
+/idx
+/node_modules
 .env
-.idx
-.vscode
