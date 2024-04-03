@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { SubConteudoSchema } from "./SubConteudo.js";
 
 const ArtigoSchema = new mongoose.Schema(
   {
@@ -10,8 +11,8 @@ const ArtigoSchema = new mongoose.Schema(
     conteudo: {
       type: String,
     },
-    subconteúdo: {
-      type: [SubConteudo],
+    subconteudo: {
+      type: [SubConteudoSchema],
     },
     imagem: {
       type: String,
