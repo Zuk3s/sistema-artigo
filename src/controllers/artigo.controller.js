@@ -2,12 +2,16 @@ import { Artigo } from "../models/Artigo.js";
 
 export const getArtigos = async (req, res) => {
   try {
-    let { pagina = 1, limite = 3 } = req.query;
+    let { pagina = 1, limite = 3 /*, ordenacao = "_id:-1" */ } = req.query;
+
+    let {campoOrdenacao, ordem} = ordenacao.split(":");
 
     pagina = parseInt(pagina);
     limite = parseInt(limite);
+    ordem = parseInt(ordem || -1);
 
     const artigos = await Artigo.find()
+      //.sort({ [campoOrdenacao]: ordem }) Ordena de acordo com o valor passado no campoOrdenacao e define a ordem de acordo com o valor da variavel ordem
       .populate("subconteudo")
       .skip((pagina - 1) * limite)
       .limit(limite);
