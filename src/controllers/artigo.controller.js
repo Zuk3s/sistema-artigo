@@ -1,5 +1,18 @@
 import { Artigo } from "../models/Artigo.js";
 
+export const getArtigo = async (req, res) => {
+  try {
+    const artigo = await Artigo.findById(req.params.id).populate("subconteudo");
+    if (!artigo) {
+      return res.status(404).json({ message: "Artigo não encontrado" });
+    }
+    
+    res.status(200).json(artigo);
+  } catch (error) {
+    res.status(500).json({ message: "Artigo não encontrado"})
+  }
+}
+
 export const getArtigos = async (req, res) => {
   try {
     let { pagina = 1, limite = 3 /*, ordenacao = "_id:-1" */ } = req.query;
