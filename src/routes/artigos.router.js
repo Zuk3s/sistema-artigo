@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getArtigos,
+  getArtigo,
   createArtigo,
   updateArtigo,
   deleteArtigo,
@@ -9,6 +10,7 @@ import {
 const rota = express.Router();
 
 rota.get("/", getArtigos);
+rota.get("/:id", getArtigo)
 
 rota.post("/", createArtigo);
 
