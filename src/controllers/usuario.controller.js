@@ -2,6 +2,35 @@ import JWT from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { Usuario } from "../models/Usuario.js";
 
+export const getUsuarios = async (req, res) => {
+  try {
+    const usuarios = await Usuario.find();
+    res.status(200).json(usuarios);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const putUsuario = async (req, res) => {
+  try {
+    const usuarioId = req.params.id;
+    const usuarioNovo = req.body;
+
+    const usuario = await Usuario.findByIdAndUpdate(usuarioId, usuarioNovo, {
+      new: true,
+    });
+
+    if (!usuario) {
+      res.status(404).send("Usuáerio não encontrado");
+    }
+
+    await usuario.save();
+    res.status(201).json(usuario);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export const register = async (req, res) => {
   try {
     const { primeiroNome, sobreNome, email, senha, telefone, pastaFoto } =
