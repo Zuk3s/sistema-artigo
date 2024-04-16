@@ -34,6 +34,10 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    Admin: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     versionKey: false,
