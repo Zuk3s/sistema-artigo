@@ -6,12 +6,12 @@ export const getArtigo = async (req, res) => {
     if (!artigo) {
       return res.status(404).json({ message: "Artigo não encontrado" });
     }
-    
+
     res.status(200).json(artigo);
   } catch (error) {
-    res.status(500).json({ message: "Artigo não encontrado"})
+    res.status(500).json({ message: "Artigo não encontrado" });
   }
-}
+};
 
 export const getArtigos = async (req, res) => {
   try {
@@ -66,7 +66,6 @@ export const updateArtigo = async (req, res) => {
       return res.status(404).json({ error: "Artigo não encontrado" });
     }
 
-    await artigo.update(novoArtigo);
     await artigo.save();
 
     res.status(201).json(artigo);
