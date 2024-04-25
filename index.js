@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import multer from "multer";
 import path from "path";
+import cors from "cors";
 import { register } from "./src/controllers/usuario.controller.js";
 import { createPost } from "./src/controllers/artigo.controller.js";
 import { verificarToken } from "./src/middleware/verificarToken.js";
@@ -12,6 +13,7 @@ import usuariosRota from "./src/routes/usuarios.router.js";
 // CONFIGURAÇÕES
 const app = express();
 app.use(express.json());
+app.use(cors())
 dotenv.configDotenv();
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
